@@ -1,0 +1,23 @@
+CREATE TABLE store 
+(item_id INTEGER PRIMARY KEY, aisle_number INTEGER, item TEXT, price INTEGER, weight_in_lbs INTEGER);
+
+INSERT INTO store VALUES (1, 6 , 'Cereal', 4.99, 2.0);
+INSERT INTO store VALUES (2, 7 , 'Milk ', 7.99, 3.0);
+INSERT INTO store VALUES (3, 2 , 'Coffee ', 9.99, 0.4);
+INSERT INTO store VALUES (4, 5 , 'Beans ', 2.99, 1.0);
+INSERT INTO store VALUES (5, 7 , 'Butter ', 3.99, 0.8);
+INSERT INTO store VALUES (6, 11 , 'Bread ', 3.99, 1.1);
+INSERT INTO store VALUES (7, 14 , 'Beer ', 10.99, 2.7);
+INSERT INTO store VALUES (8, 6 , 'Granola ', 5.99, 2.1);
+INSERT INTO store VALUES (9, 6,'Oatmeal ', 5.99 , 4.2);
+INSERT INTO store VALUES (10, 1 , 'Cinnamon ', 14.99, 0.2);
+INSERT INTO store VALUES (11, 2 , 'Water ', 3.99, 10.5);
+INSERT INTO store VALUES (12, 4, 'Tomato Sauce ', 2.99 , 1.5);
+INSERT INTO store VALUES (13, 8, 'Tea ', 5.99 , 0.8);
+INSERT INTO store VALUES (14, 3, 'Mustard ', 2.99, 1.0);
+INSERT INTO store VALUES (15, 3, 'Ketchup ', 2.99, 1.0);
+
+SELECT aisle_number, item, weight_in_lbs, price FROM store
+ORDER BY price ASC; 
+
+SELECT AVG(price) FROM store;
