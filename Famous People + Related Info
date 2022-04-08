@@ -1,0 +1,93 @@
+/* Create table about the people and what they do here */
+CREATE TABLE famous_people 
+(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER);
+
+INSERT INTO famous_people (name, age) VALUES ('Donald Trump', 75); 
+INSERT INTO famous_people (name, age) VALUES ('Melania Trump', 51);
+INSERT INTO famous_people (name, age) VALUES ('Elon Musk', 50);
+INSERT INTO famous_people (name, age) VALUES ('Will Smith', 53);
+INSERT INTO famous_people (name, age) VALUES ('Jada Smith', 50);
+INSERT INTO famous_people (name, age) VALUES ('Bill Clinton', 75);
+INSERT INTO famous_people (name, age) VALUES ('Hillary Clinton', 74);
+INSERT INTO famous_people (name, age) VALUES ('Tom Hanks', 65);
+INSERT INTO famous_people (name, age) VALUES ('Rita Wilson', 65);
+INSERT INTO famous_people (name, age) VALUES ('Goldie Hawn', 76);
+INSERT INTO famous_people (name, age) VALUES ('Kurt Russell', 71);
+INSERT INTO famous_people (name, age) VALUES ('Blake Lively', 34);
+INSERT INTO famous_people (name, age) VALUES ('Ryan Reynolds', 45);
+INSERT INTO famous_people (name, age) VALUES ('Ashton Kutcher', 43);
+INSERT INTO famous_people (name, age) VALUES ('Mila Kunis', 38);
+
+CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT, person_id INTEGER, movie_name TEXT, duration_minutes INTEGER);
+
+INSERT INTO movies (person_id, movie_name, duration_minutes) VALUES (1, 'Home Alone', 103);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (2, 'Fahrenheit 11/9', 120);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (3, 'Elon Musk: The Real Life Iron Man', 71);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (4, 'Bamboozled', 135);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (4, 'The Matrix: Resurrections', 148);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (5, 'iRobot', 115);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (5, 'I Am Legend', 101);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (5, 'M.I.B', 98);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES (5, 'A Fish Tale', 90);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(6, 'New World Order', 90);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(7, 'Fahrenheit 11/9', 120);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(8, 'Cast Away', 144);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(8, 'Terminal', 128);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(9, 'Jingle All The Way', 89);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(10, 'Overboard', 112);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(11, 'Overboard', 112);
+INSERT INTO movies (person_id, movie_name, duration_minutes)VALUES(12 , 'The Town', 150);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(13 , 'Deadpool', 108);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(13 , 'Green Lantern', 123);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(13, 'Free Guy', 115);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(14, 'The Butterfly Effect', 120);
+INSERT INTO movies (person_id, movie_name, duration_minutes)
+VALUES(15 , 'Ted', 112);
+
+
+CREATE TABLE married_to (id INTEGER PRIMARY KEY AUTOINCREMENT, person1_id INTEGER, person2_id INTEGER);
+
+INSERT INTO married_to (person1_id, person2_id) VALUES (1,2);
+INSERT INTO married_to (person1_id, person2_id) VALUES (4,5);
+INSERT INTO married_to (person1_id, person2_id) VALUES (6,7);
+INSERT INTO married_to (person1_id, person2_id) VALUES (8,9);
+INSERT INTO married_to (person1_id, person2_id) VALUES (10,11);
+INSERT INTO married_to (person1_id, person2_id) VALUES (12,13);
+INSERT INTO married_to (person1_id, person2_id) VALUES (14,15);
+
+SELECT a.name, movies.movie_name, movies.duration_minutes FROM movies
+JOIN famous_people a
+ON movies.person_id = b.id
+JOIN famous_people b
+ON movies.person_id = a.id
+ORDER BY duration_minutes ASC
+;
+
+
+SELECT a.name, b.name AS spouse FROM married_to
+JOIN famous_people a
+ON a.id = married_to.person1_id 
+JOIN famous_people b
+ON b.id = married_to.person2_id;
+
+
+
