@@ -1,0 +1,51 @@
+#For this project, I first obtained a Spotify data table from Kaggle.
+#Then, I created a relevant table for the pertaining data.
+#Finally, I performed analytics via SQL.
+
+#TABLE CODE
+
+CREATE TABLE BIT_DB.spotify_data
+( id INTEGER PRIMARY KEY,
+artist_name VARCHAR(250) NOT NULL,
+track_name VARCHAR(250) NOT NULL,
+popularity INTEGER NOT NULL,
+danceability DECIMAL(4,3) NOT NULL,
+energy DECIMAL (4,3) NOT NULL,
+key INTEGER NOT NULL,
+loudness DECIMAL(5,3) NOT NULL,
+mode INTEGER NOT NULL,
+speechiness INTEGER (5,4) NOT NULL,
+acoustiness DECIMAL(6,5) NOT NULL,
+instrumentalness DECIMAL (6,5) NOT NULL,
+liveness DECIMAL (5,4) NOT NULL,
+valence DECIMAL (5,4) NOT NULL,
+tempo DECIMAL (6,3) NOT NULL,
+duration_ms INTEGER NOT NULL,
+time_signature INTEGER NOT NULL
+);
+
+#Then, I inserted the Spotify .csv file into the table
+
+#I performed the following using SQL
+
+#Here I asked for the artist name, track name, and averaged the loudness, danceability and duration (rounded off to two decimals for readability)
+
+SELECT artist_name, track_name, AVG(loudness), AVG(danceability), ROUND(AVG(duration_ms),2) 
+FROM BIT_DB.spotify_data
+WHERE loudness > 6 AND artist_name IN ('Dua Lipa', 'Lil Nas X')
+GROUP BY artist_name, track_name;
+
+#Then, I asked for the artist and track names to determine the overall "fun_level" of each song, based on their given "energy". The case statements filter and label 
+#each according to energy and labels them as such. They are then ordered by "fun_level" 
+
+SELECT artist_name, track_name,
+CASE 
+    WHEN energy <= 0.4500 THEN 'boring'
+    WHEN energy <= 0.5500 THEN 'better'
+    WHEN energy <= 0.6500 THEN 'pretty good'
+    WHEN energy <= 0.7500 THEN 'oh wow'
+    WHEN energy <= 0.8500 THEN '!!!!!'
+    ELSE 'not fun' 
+    END AS fun_level
+FROM BIT_DB.spotify_data
+ORDER BY fun_level;
